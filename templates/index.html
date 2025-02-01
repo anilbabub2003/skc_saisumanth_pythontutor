@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyBuddy - AI Python Tutor</title>
+    <title>Tutor - Modern AI Python Tutor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to PyBuddy!</h1>
-        <p>PyBuddy is a fun and interactive AI-powered tutor that helps kids learn Python. Choose a tutor character, ask questions, and complete challenges to improve your coding skills!</p>
+        <h1><i class="fas fa-robot"></i> Welcome to Tutor!</h1>
+        <p class="intro-text">Your interactive AI-powered Python learning companion. Choose your favorite tutor, ask questions, and level up your coding skills!</p>
 
-        <label for="api-key">Enter Gemini API Key:</label>
-        <input type="text" id="api-key" placeholder="Your API Key">
-        <button onclick="setApiKey()">Save Key</button>
+        <div class="api-key-section">
+            <h2><i class="fas fa-key"></i> Setup</h2>
+            <div class="input-group">
+                <input type="text" id="api-key" placeholder="Enter your Gemini API Key">
+                <button onclick="setApiKey()" class="primary-btn">
+                    <i class="fas fa-save"></i> Save Key
+                </button>
+            </div>
+        </div>
 
-        <h2>Choose Your AI Tutor:</h2>
+        <h2><i class="fas fa-users"></i> Choose Your AI Tutor</h2>
         <div class="character-selection">
-            <img src="{{ url_for('static', filename='characters/chatbot.png') }}" onclick="setCharacter('default')" alt="default">
-            <img src="{{ url_for('static', filename='characters/robot.png') }}" onclick="setCharacter('robot')" alt="Robot">
-            <img src="{{ url_for('static', filename='characters/cat.png') }}" onclick="setCharacter('cat')" alt="Cat">
-            <img src="{{ url_for('static', filename='characters/wizard.png') }}" onclick="setCharacter('wizard')" alt="Wizard">
+            <div class="character-card" onclick="setCharacter('default')">
+                <img src="{{ url_for('static', filename='characters/chatbot.png') }}" alt="default">
+                <span>Classic</span>
+            </div>
+            <div class="character-card" onclick="setCharacter('robot')">
+                <img src="{{ url_for('static', filename='characters/robot.png') }}" alt="Robot">
+                <span>Robo</span>
+            </div>
+            <div class="character-card" onclick="setCharacter('cat')">
+                <img src="{{ url_for('static', filename='characters/cat.png') }}" alt="Cat">
+                <span>Kitty</span>
+            </div>
+            <div class="character-card" onclick="setCharacter('wizard')">
+                <img src="{{ url_for('static', filename='characters/wizard.png') }}" alt="Wizard">
+                <span>Merlin</span>
+            </div>
         </div>
 
-        <div class="chat-box" id="chat-box">
-            <p class="bot">Hello! I'm your Python tutor. Ask me anything!</p>
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box">
+                <div class="message bot">
+                    <i class="fas fa-robot"></i> Hello! I'm your Python tutor. What would you like to learn today?
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" id="user-input" placeholder="Ask me anything about Python...">
+                <button onclick="sendMessage()" class="send-btn">
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
+            </div>
         </div>
-
-        <input type="text" id="user-input" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

@@ -42,11 +42,15 @@ def chat():
     try:
         model = genai.GenerativeModel("gemini-1.5-flash")
         
+        # Updated preprompt for Python-only responses and natural conversation
+        preprompt = """You are a Python AI assistant. So please maintain the Python code format and don't write in any other language as you are a Python AI assistant. And you can answer in normal English text 
+        when user just asks you a question. and also try to understand if user is asking for a code related."""
+        
         # Apply character-specific response style
         if character in CHARACTER_STYLES:
-            response = model.generate_content(f"generate {user_message} as you are your {character}")
+            response = model.generate_content(f"{preprompt} {user_message} as you are your {character}")
         else:
-            response = model.generate_content(user_message)
+            response = model.generate_content(f"{preprompt} {user_message}")
             
         ai_reply = re.sub(r'\*\*', '', response.text)
         return jsonify({"reply": ai_reply})
