@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyBuddy - AI Python Tutor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to PyBuddy!</h1>
+        <p>PyBuddy is a fun and interactive AI-powered tutor that helps kids learn Python. Choose a tutor character, ask questions, and complete challenges to improve your coding skills!</p>
+
+        <label for="api-key">Enter Gemini API Key:</label>
+        <input type="text" id="api-key" placeholder="Your API Key">
+        <button onclick="setApiKey()">Save Key</button>
+
+        <h2>Choose Your AI Tutor:</h2>
+        <div class="character-selection">
+            <img src="{{ url_for('static', filename='characters/chatbot.png') }}" onclick="setCharacter('default')" alt="default">
+            <img src="{{ url_for('static', filename='characters/robot.png') }}" onclick="setCharacter('robot')" alt="Robot">
+            <img src="{{ url_for('static', filename='characters/cat.png') }}" onclick="setCharacter('cat')" alt="Cat">
+            <img src="{{ url_for('static', filename='characters/wizard.png') }}" onclick="setCharacter('wizard')" alt="Wizard">
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            <p class="bot">Hello! I'm your Python tutor. Ask me anything!</p>
+        </div>
+
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
